@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Note>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div class="d-flex justify-content-start" style="margin-top:40px">
+    <h2>Daily Task List</h2>
+    </div>
+    <div class="d-flex justify-content-start" style="margin-top:20px">
+        <a href="User/AddNote" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Add New Note</a>
+    </div>
+
+    @if(!Model.Any())
+    {
+        <div class="d-flex justify-content-start" style="margin-top:40px">
+            <h4>Add your First Item in the list ...</h4>
+        </div>
+    }else{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="w-50">Content</th>
+                <th scope="col">Time created</th>
+                <th scope="col">ExpectedTime</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Content</td>
+                        <td>@item.AddTime</td>
+                        <td>@item.ExpectedTime</td>
+                        <td>
+                                <a href="User/update/@item.Id" class="btn btn-success"><i class="bi bi-pencil-square"></i>Update</a>
+                                <a href="User/delete/@item.Id" class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    }
+
+</div>

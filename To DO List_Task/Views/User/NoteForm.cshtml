@@ -1,0 +1,24 @@
+﻿@model Note;
+
+ <h2 >
+    @( Model == null ? "Add New Note" : "edit Note")
+     </h2>
+
+@using(Html.BeginForm("add","User"))
+{
+    @Html.HiddenFor(m=>m.Id)
+    @Html.HiddenFor(m=>m.AddTime)
+    <div class="form-group mt-2">
+        <label for="">Note Content</label>
+        <input type="text" class="form-control mt-1"
+               asp-for="Content" placeholder="Note Content">
+        @Html.ValidationMessageFor(m=>m.Content,null,new {@class ="text-danger" })
+    </div>
+    <div class="form-group mt-2">
+        <label for="">Expected Time To Finsh It  </label>
+        <input type="text" class="form-control mt-1"
+               asp-for="ExpectedTime" placeholder=" 30 min">
+        @Html.ValidationMessageFor(m=>m.ExpectedTime,null ,new {@class = "text-danger"})
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+}
